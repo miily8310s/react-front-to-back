@@ -80,10 +80,10 @@ export const FeedbackProvider = ({ children }: { children: ReactNode }) => {
   };
 
   /**
-   * @returns {string} feedback数が0のときは0、それ以外はfeedback.ratingの平均値を返す
+   * @returns {string} feedbackのときは0、それ以外はfeedback.ratingの平均値を返す
    * @see https://stackoverflow.com/questions/18838301/in-javascript-why-does-zero-divided-by-zero-return-nan-but-any-other-divided-b
    */
-  const getFeedbackRatingAverage = (): string => {
+  const getFeedbackRatingAverage = () => {
     const feedbackRatingSum = feedback.reduce((pre, cur) => {
       return pre + cur.rating;
     }, 0);
