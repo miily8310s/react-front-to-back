@@ -57,7 +57,7 @@ export const FeedbackProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const updateFeedback = async (id: number, updateItem: FeedBack) => {
-    const response = await fetch(`/feedback/${id}`, {
+    const response = await fetch(`${BASE_URL}/feedback/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

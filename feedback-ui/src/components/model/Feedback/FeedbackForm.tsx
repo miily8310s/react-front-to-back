@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent, useContext, useState, useEffect } from "react";
 import FeedbackContext from "../../../providers/feedback/FeedbackProvider";
 import { Card } from "../../ui/Card";
 import { Button } from "../../ui/Button";
+import { getNumberArray } from "../../../utils/Number";
 
 export const FeedbackForm = () => {
   const { addFeedback, updateFeedback, feedbackEdit, feedback } =
@@ -51,10 +52,29 @@ export const FeedbackForm = () => {
     setText("");
   };
 
+  const handleRadioChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setRating(+e.target.value);
+  };
+
   return (
     <Card>
       <form onSubmit={handleFormSubmit}>
         <h2>フィードバックをお願いします</h2>
+        <ul className="feedbackRating">
+          {getNumberArray(5).map((num) => (
+            <li key={`${num}`}>
+              <input
+                type="radio"
+                name="rating"
+                id={`num${num}`}
+                value={num}
+                checked={rating === num}
+                onChange={handleRadioChange}
+              />
+              <label htmlFor={`num${num}`}>{num}</label>
+            </li>
+          ))}
+        </ul>
         <div>
           <input
             onChange={handleTextChange}
