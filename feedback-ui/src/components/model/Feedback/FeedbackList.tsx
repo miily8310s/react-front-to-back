@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import FeedbackContext from "../../../providers/feedback/FeedbackProvider";
-import { Spinner } from "../../ui/Spinner";
-import { FeedbackItem } from "./FeedbackItem";
+import FeedbackContext from "@/providers/feedback/FeedbackProvider";
+import { Spinner } from "@/components/ui/Spinner";
+import { FeedbackItem } from "@/components/model/Feedback/FeedbackItem";
 
 export const FeedbackList = () => {
   const { isLoading, feedback, getFeedbackRatingAverage } =

@@ -1,8 +1,8 @@
 import { ChangeEvent, FormEvent, useContext, useState, useEffect } from "react";
-import FeedbackContext from "../../../providers/feedback/FeedbackProvider";
-import { Card } from "../../ui/Card";
-import { Button } from "../../ui/Button";
-import { getNumberArray } from "../../../utils/Number";
+import FeedbackContext from "@/providers/feedback/FeedbackProvider";
+import { Card } from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
+import { getNumberArray } from "@/utils/Number";
 
 export const FeedbackForm = () => {
   const { addFeedback, updateFeedback, feedbackEdit, feedback } =

@@ -1,5 +1,5 @@
 import { BrowserRouter as Router } from "react-router-dom";
-import { FeedbackProvider } from "./feedback/FeedbackProvider";
+import { FeedbackProvider } from "@/providers/feedback/FeedbackProvider";
 
 interface AppProviderProps {
   children: React.ReactNode;

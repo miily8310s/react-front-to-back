@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { FaTimes, FaEdit } from "react-icons/fa";
-import FeedbackContext from "../../../providers/feedback/FeedbackProvider";
-import { Card } from "../../ui/Card";
-import { FeedBack } from "../../../entities/Feedback";
+import FeedbackContext from "@/providers/feedback/FeedbackProvider";
+import { Card } from "@/components/ui/Card";
+import { FeedBack } from "@/entities/Feedback";
 
 export const FeedbackItem = ({ item }: { item: FeedBack }) => {
   const { deleteFeedback, editFeedback } = useContext(FeedbackContext);

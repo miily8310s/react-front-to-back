@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { FeedBack, FeedBackEdit } from "../../entities/Feedback";
+import { FeedBack, FeedBackEdit } from "@/entities/Feedback";
 
 const BASE_URL = "http://localhost:8080";
 

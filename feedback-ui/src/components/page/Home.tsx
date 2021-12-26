@@ -1,5 +1,5 @@
-import { FeedbackForm } from "../model/Feedback/FeedbackForm";
-import { FeedbackList } from "../model/Feedback/FeedbackList";
+import { FeedbackForm } from "@/components/model/Feedback/FeedbackForm";
+import { FeedbackList } from "@/components/model/Feedback/FeedbackList";
 
 export const Home = () => {
   return (
