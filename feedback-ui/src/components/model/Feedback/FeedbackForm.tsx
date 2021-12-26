@@ -82,7 +82,7 @@ export const FeedbackForm = () => {
             value={text}
             placeholder="レビューをここに記載してください"
           />
-          <Button type="submit" disabled={btnDisabled} version="ddd">
+          <Button type="submit" disabled={btnDisabled} version="primary">
             送信
           </Button>
         </div>

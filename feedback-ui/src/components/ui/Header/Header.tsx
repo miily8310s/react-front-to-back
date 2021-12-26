@@ -1,3 +1,5 @@
+import styles from "./Header.module.scss";
+
 interface HeaderPropsType {
   text?: string;
   bgColor?: string;
@@ -14,7 +16,7 @@ export const Header = ({
     color: textColor,
   };
   return (
-    <header style={headerStyles}>
+    <header className={styles.headerContainer} style={headerStyles}>
       <div>
         <h2>{text}</h2>
       </div>

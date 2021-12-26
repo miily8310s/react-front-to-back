@@ -1,5 +1,7 @@
+import styles from "./Button.module.scss";
+
 type ButtonPropsType = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  version: string;
+  version: "primary" | "secondary";
 };
 
 export const Button = ({
@@ -8,8 +10,13 @@ export const Button = ({
   disabled,
   ...props
 }: ButtonPropsType) => {
+  const btnColor = `btn-${version}`;
   return (
-    <button type={type} disabled={disabled} className={`btn btn-${version}`}>
+    <button
+      type={type}
+      disabled={disabled}
+      className={`${styles.btn} ${styles[btnColor]}`}
+    >
       {props.children}
     </button>
   );
