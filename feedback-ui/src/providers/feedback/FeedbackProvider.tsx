@@ -1,16 +1,8 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
+import { FeedBack, FeedBackEdit } from "../../entities/Feedback";
 
 const BASE_URL = "http://localhost:8080";
 
-interface FeedBack {
-  id: number;
-  rating: number;
-  text: string;
-}
-interface FeedBackEdit {
-  item: FeedBack;
-  edit: boolean;
-}
 interface FeedContextType {
   isLoading: boolean;
   feedback: FeedBack[];
@@ -19,6 +11,7 @@ interface FeedContextType {
   deleteFeedback: (id: number) => Promise<void>;
   updateFeedback: (id: number, updateItem: FeedBack) => Promise<void>;
   editFeedback: (item: FeedBack) => void;
+  getFeedbackRatingAverage: () => string;
 }
 
 const FeedbackContext = createContext<FeedContextType>({} as FeedContextType);
@@ -86,6 +79,20 @@ export const FeedbackProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
+  /**
+   * @returns {string} feedback数が0のときは0、それ以外はfeedback.ratingの平均値を返す
+   * @see https://stackoverflow.com/questions/18838301/in-javascript-why-does-zero-divided-by-zero-return-nan-but-any-other-divided-b
+   */
+  const getFeedbackRatingAverage = (): string => {
+    const feedbackRatingSum = feedback.reduce((pre, cur) => {
+      return pre + cur.rating;
+    }, 0);
+    const feedbackRatingAverage = feedbackRatingSum / feedback.length;
+    return isNaN(feedbackRatingAverage)
+      ? "0"
+      : feedbackRatingAverage.toFixed(1);
+  };
+
   return (
     <FeedbackContext.Provider
       value={{
@@ -96,6 +103,7 @@ export const FeedbackProvider = ({ children }: { children: ReactNode }) => {
         deleteFeedback,
         updateFeedback,
         editFeedback,
+        getFeedbackRatingAverage,
       }}
     >
       {children}
