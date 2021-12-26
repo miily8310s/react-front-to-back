@@ -3,6 +3,7 @@ import FeedbackContext from "@/providers/feedback/FeedbackProvider";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { getNumberArray } from "@/utils/NumberUtils";
+import styles from "./Feedback.module.scss";
 
 export const FeedbackForm = () => {
   const { addFeedback, updateFeedback, feedbackEdit, feedbacks } =
@@ -60,7 +61,7 @@ export const FeedbackForm = () => {
     <Card>
       <form onSubmit={handleFormSubmit}>
         <h2>フィードバックをお願いします</h2>
-        <ul className="feedbackRating">
+        <ul className={styles.feedbackRating}>
           {getNumberArray(5).map((num) => (
             <li key={`${num}`}>
               <input
@@ -75,7 +76,7 @@ export const FeedbackForm = () => {
             </li>
           ))}
         </ul>
-        <div>
+        <div className={styles.feedbackInputGroup}>
           <input
             onChange={handleTextChange}
             type="text"

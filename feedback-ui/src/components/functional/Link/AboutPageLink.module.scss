@@ -1,0 +1,13 @@
+.aboutPageLink {
+  text-align: center;
+  margin-bottom: 1rem;
+  a {
+    color: #fff;
+    text-decoration: none;
+    &:hover {
+      transform: scale(0.98);
+      opacity: 0.9;
+      cursor: pointer;
+    }
+  }
+}
