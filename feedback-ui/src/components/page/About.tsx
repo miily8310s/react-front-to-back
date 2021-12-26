@@ -5,12 +5,10 @@ export const About = () => {
   return (
     <Card>
       <div className="about">
-        <h1>About This Project</h1>
-        <p>This is a React app to leave feedback for a product or service</p>
-        <p>Version: 1.0.0</p>
-
+        <h1>このプロジェクトについて</h1>
+        <p>これはReactで作成したフィードバックアプリです</p>
         <p>
-          <Link to="/">Back To Home</Link>
+          <Link to="/">ホームに戻る</Link>
         </p>
       </div>
     </Card>

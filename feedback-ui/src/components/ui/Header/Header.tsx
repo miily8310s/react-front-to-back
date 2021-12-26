@@ -1,7 +1,7 @@
 interface HeaderPropsType {
-  text: string;
-  bgColor: string;
-  textColor: string;
+  text?: string;
+  bgColor?: string;
+  textColor?: string;
 }
 
 export const Header = ({
