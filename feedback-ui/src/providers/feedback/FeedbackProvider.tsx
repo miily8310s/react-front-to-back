@@ -1,7 +1,6 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { FeedBack, FeedBackEdit } from "@/entities/Feedback";
-
-const BASE_URL = "http://localhost:8080";
+import { axiosClient } from "@/lib/axios/axiosClient";
 
 interface FeedContextType {
   isLoading: boolean;
@@ -24,8 +23,7 @@ export const FeedbackProvider = ({ children }: { children: ReactNode }) => {
     edit: false,
   });
   const fetchFeedback = async () => {
-    const response = await fetch(`${BASE_URL}/feedback?_sort=id`);
-    const data = await response.json();
+    const { data } = await axiosClient.get(`feedback?_sort=id`);
     setFeedbacks(data);
     setIsLoading(false);
   };
@@ -35,37 +33,20 @@ export const FeedbackProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const addFeedback = async (newFeedback: FeedBack) => {
-    const response = await fetch(`${BASE_URL}/feedback`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newFeedback),
-    });
-
-    const data = await response.json();
-
+    const { data } = await axiosClient.post("feedback", newFeedback);
     setFeedbacks([data, ...feedbacks]);
   };
 
   const deleteFeedback = async (id: number) => {
     if (window.confirm("本当に削除しますか?")) {
-      await fetch(`${BASE_URL}/feedback/${id}`, { method: "DELETE" });
+      await axiosClient.delete(`feedback/${id}`);
 
       setFeedbacks(feedbacks.filter((item) => item.id !== id));
     }
   };
 
   const updateFeedback = async (id: number, updateItem: FeedBack) => {
-    const response = await fetch(`${BASE_URL}/feedback/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updateItem),
-    });
-
-    const data = await response.json();
+    const { data } = await axiosClient.put(`feedback/${id}`, updateItem);
 
     setFeedbacks(
       feedbacks.map((item) => (item.id === id ? { ...item, ...data } : item))
