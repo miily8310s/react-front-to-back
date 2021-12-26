@@ -1,6 +1,6 @@
 import { useRoutes } from "react-router-dom";
-import { Home } from "@/components/page/Home";
-import { About } from "@/components/page/About";
+import { Home } from "@/page/Home";
+import { About } from "@/page/About";
 
 export const AppRoutes = () => {
   const element = useRoutes([
