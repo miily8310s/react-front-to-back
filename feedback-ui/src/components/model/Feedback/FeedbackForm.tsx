@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { getNumberArray } from "@/utils/NumberUtils";
 
 export const FeedbackForm = () => {
-  const { addFeedback, updateFeedback, feedbackEdit, feedback } =
+  const { addFeedback, updateFeedback, feedbackEdit, feedbacks } =
     useContext(FeedbackContext);
   const [text, setText] = useState("");
   const [rating, setRating] = useState(5);
@@ -40,7 +40,7 @@ export const FeedbackForm = () => {
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newFeedback = {
-      id: feedbackEdit.edit ? feedbackEdit.item.id : feedback.length + 1,
+      id: feedbackEdit.edit ? feedbackEdit.item.id : feedbacks.length + 1,
       text,
       rating,
     };

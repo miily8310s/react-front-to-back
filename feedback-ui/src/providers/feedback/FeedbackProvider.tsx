@@ -5,7 +5,7 @@ const BASE_URL = "http://localhost:8080";
 
 interface FeedContextType {
   isLoading: boolean;
-  feedback: FeedBack[];
+  feedbacks: FeedBack[];
   feedbackEdit: FeedBackEdit;
   addFeedback: (newFeedback: FeedBack) => Promise<void>;
   deleteFeedback: (id: number) => Promise<void>;
@@ -18,7 +18,7 @@ const FeedbackContext = createContext<FeedContextType>({} as FeedContextType);
 
 export const FeedbackProvider = ({ children }: { children: ReactNode }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [feedback, setFeedback] = useState<FeedBack[]>([]);
+  const [feedbacks, setFeedbacks] = useState<FeedBack[]>([]);
   const [feedbackEdit, setFeedbackEdit] = useState<FeedBackEdit>({
     item: {} as FeedBack,
     edit: false,
@@ -26,7 +26,7 @@ export const FeedbackProvider = ({ children }: { children: ReactNode }) => {
   const fetchFeedback = async () => {
     const response = await fetch(`${BASE_URL}/feedback?_sort=id`);
     const data = await response.json();
-    setFeedback(data);
+    setFeedbacks(data);
     setIsLoading(false);
   };
 
@@ -45,14 +45,14 @@ export const FeedbackProvider = ({ children }: { children: ReactNode }) => {
 
     const data = await response.json();
 
-    setFeedback([data, ...feedback]);
+    setFeedbacks([data, ...feedbacks]);
   };
 
   const deleteFeedback = async (id: number) => {
     if (window.confirm("本当に削除しますか?")) {
       await fetch(`${BASE_URL}/feedback/${id}`, { method: "DELETE" });
 
-      setFeedback(feedback.filter((item) => item.id !== id));
+      setFeedbacks(feedbacks.filter((item) => item.id !== id));
     }
   };
 
@@ -67,8 +67,8 @@ export const FeedbackProvider = ({ children }: { children: ReactNode }) => {
 
     const data = await response.json();
 
-    setFeedback(
-      feedback.map((item) => (item.id === id ? { ...item, ...data } : item))
+    setFeedbacks(
+      feedbacks.map((item) => (item.id === id ? { ...item, ...data } : item))
     );
   };
 
@@ -84,10 +84,10 @@ export const FeedbackProvider = ({ children }: { children: ReactNode }) => {
    * @see https://stackoverflow.com/questions/18838301/in-javascript-why-does-zero-divided-by-zero-return-nan-but-any-other-divided-b
    */
   const getFeedbackRatingAverage = () => {
-    const feedbackRatingSum = feedback.reduce((pre, cur) => {
+    const feedbackRatingSum = feedbacks.reduce((pre, cur) => {
       return pre + cur.rating;
     }, 0);
-    const feedbackRatingAverage = feedbackRatingSum / feedback.length;
+    const feedbackRatingAverage = feedbackRatingSum / feedbacks.length;
     return isNaN(feedbackRatingAverage)
       ? "0"
       : feedbackRatingAverage.toFixed(1);
@@ -97,7 +97,7 @@ export const FeedbackProvider = ({ children }: { children: ReactNode }) => {
     <FeedbackContext.Provider
       value={{
         isLoading,
-        feedback,
+        feedbacks,
         feedbackEdit,
         addFeedback,
         deleteFeedback,

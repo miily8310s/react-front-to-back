@@ -4,19 +4,19 @@ import { Spinner } from "@/components/ui/Spinner";
 import { FeedbackItem } from "@/components/model/Feedback/FeedbackItem";
 
 export const FeedbackList = () => {
-  const { isLoading, feedback, getFeedbackRatingAverage } =
+  const { isLoading, feedbacks, getFeedbackRatingAverage } =
     useContext(FeedbackContext);
   return isLoading ? (
     <Spinner />
   ) : (
     <>
       <div className="feedbackList">
-        {feedback.map((item) => (
+        {feedbacks.map((item) => (
           <FeedbackItem key={`${item.id}_${item.text}`} item={item} />
         ))}
       </div>
       <div className="feedbackStatus">
-        <h4>{feedback.length} Reviews</h4>
+        <h4>{feedbacks.length} Reviews</h4>
         <h4>Average Rating: {getFeedbackRatingAverage()}</h4>
       </div>
     </>
