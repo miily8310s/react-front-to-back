@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import FeedbackContext from "../../../providers/feedback/FeedbackProvider";
 import { Spinner } from "../../ui/Spinner";
+import { FeedbackItem } from "./FeedbackItem";
 
 export const FeedbackList = () => {
   const { isLoading, feedback } = useContext(FeedbackContext);
@@ -9,7 +10,7 @@ export const FeedbackList = () => {
   ) : (
     <div className="feedbackList">
       {feedback.map((item) => (
-        <div>{item.id}</div>
+        <FeedbackItem key={`${item.id}_${item.text}`} item={item} />
       ))}
     </div>
   );
