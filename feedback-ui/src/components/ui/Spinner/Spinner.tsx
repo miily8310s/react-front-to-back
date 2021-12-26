@@ -1,5 +1,4 @@
-// FIXME: set gif asset
-import spinner from "../assets/spinner.gif";
+import spinner from "../../../assets/spinner.gif";
 
 export const Spinner = () => {
   return (
