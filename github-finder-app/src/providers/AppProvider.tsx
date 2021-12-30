@@ -1,3 +1,5 @@
+import { Footer } from "@/components/ui/Footer";
+import { Navbar } from "@/components/ui/Navbar";
 import { BrowserRouter as Router } from "react-router-dom";
 
 interface AppProviderProps {
@@ -9,12 +11,12 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   return (
     <Router>
       <div>
-        {/* <Navbar /> */}
+        <Navbar />
         <main>
           {/* <Alert /> */}
           {children}
         </main>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </Router>
   );
