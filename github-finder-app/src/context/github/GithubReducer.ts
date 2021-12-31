@@ -1,6 +1,6 @@
 import { ValueOf } from "@/utils/typesUtils";
 
-const GithubReducerActionTypes = {
+export const GithubReducerActionTypes = {
   getUsers: "GET_USERS",
   getUserAndRepos: "GET_USER_AND_REPOS",
   setLoad: "SET_LOADING",
@@ -24,25 +24,25 @@ const githubReducer = (
   action: GitHubReducerAction
 ) => {
   switch (action.type) {
-    case "GET_USERS":
+    case GithubReducerActionTypes.getUsers:
       return {
         ...state,
         users: action.payload.users,
         loading: false,
       };
-    case "GET_USER_AND_REPOS":
+    case GithubReducerActionTypes.getUserAndRepos:
       return {
         ...state,
         user: action.payload.user,
         repos: action.payload.repos,
         loading: false,
       };
-    case "SET_LOADING":
+    case GithubReducerActionTypes.setLoad:
       return {
         ...state,
         loading: true,
       };
-    case "CLEAR_USERS":
+    case GithubReducerActionTypes.clearUsers:
       return {
         ...state,
         users: [],

@@ -1,6 +1,6 @@
 import { ValueOf } from "@/utils/typesUtils";
 
-const AlertReducerActionTypes = {
+export const AlertReducerActionTypes = {
   set: "SET_ALERT",
   remove: "REMOVE_ALERT",
 } as const;
@@ -9,21 +9,24 @@ export interface AlertReducerState {
   msg: string;
   type: string;
 }
-interface AlertReducerAction {
+export interface AlertReducerAction {
   type: ValueOf<typeof AlertReducerActionTypes>;
-  payload?: {
+  payload: {
     msg: string;
     type: string;
   };
 }
 
-// FIXME: 型定義
-const AlertReducer = (state: any, action: AlertReducerAction) => {
+const AlertReducer = (state: AlertReducerState, action: AlertReducerAction) => {
   switch (action.type) {
-    case "SET_ALERT":
+    case AlertReducerActionTypes.set:
       return action.payload;
-    case "REMOVE_ALERT":
-      return null;
+    case AlertReducerActionTypes.remove:
+      return {
+        ...state,
+        msg: "",
+        type: "",
+      };
     default:
       return state;
   }

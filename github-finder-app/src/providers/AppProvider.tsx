@@ -8,6 +8,7 @@ interface AppProviderProps {
   children: React.ReactNode;
 }
 
+// FIXME: AlertProviderでエラーが出る箇所の解消
 export const AppProvider = ({ children }: AppProviderProps) => {
   return (
     <GithubProvider>
