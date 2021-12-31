@@ -1,18 +1,24 @@
 import { createContext, useReducer } from "react";
-import AlertReducer from "./AlertReducer";
+import AlertReducer, { AlertReducerState } from "./AlertReducer";
 
 interface AlertContextProps {
   children: React.ReactNode;
 }
 
-// FIXME: 型定義
-const AlertContext = createContext<any>(null);
+interface AlertContextType {
+  alert: AlertReducerState | null;
+  setAlert: (msg: string, type: string) => void;
+}
+
+const AlertContext = createContext<AlertContextType>({
+  alert: null,
+  setAlert: () => {},
+});
 
 export const AlertProvider = (children: AlertContextProps) => {
   const initialState = null;
   const [state, dispatch] = useReducer(AlertReducer, initialState);
-  // FIXME: 型定義
-  const setAlert = (msg: any, type: any) => {
+  const setAlert = (msg: string, type: string) => {
     dispatch({
       type: "SET_ALERT",
       payload: { msg, type },
