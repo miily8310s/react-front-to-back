@@ -10,10 +10,7 @@ interface AlertContextType {
   setAlert: (msg: string, type: string) => void;
 }
 
-const AlertContext = createContext<AlertContextType>({
-  alert: null,
-  setAlert: () => {},
-});
+const AlertContext = createContext({} as AlertContextType);
 
 export const AlertProvider = (children: AlertContextProps) => {
   const initialState = null;
