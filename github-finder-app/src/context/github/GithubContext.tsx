@@ -1,3 +1,4 @@
+import { User } from "@/entities/users";
 import { createContext, useReducer } from "react";
 import githubReducer, {
   GitHubReducerState,
@@ -18,7 +19,7 @@ interface GithubProviderProps {
 export const GithubProvider = ({ children }: GithubProviderProps) => {
   const initialState: GitHubReducerState = {
     users: [],
-    user: {},
+    user: {} as User,
     repos: [],
     loading: false,
   };

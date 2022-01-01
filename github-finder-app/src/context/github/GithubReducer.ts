@@ -1,4 +1,5 @@
 import { ValueOf } from "@/utils/typesUtils";
+import { User } from "@/entities/users";
 
 export const GithubReducerActionTypes = {
   getUsers: "GET_USERS",
@@ -9,14 +10,14 @@ export const GithubReducerActionTypes = {
 
 // FIXME: 型定義
 export interface GitHubReducerState {
-  users: object[];
-  user: object;
-  repos: object[];
-  loading: boolean;
+  users?: User[];
+  user?: User;
+  repos?: object[];
+  loading?: boolean;
 }
 export interface GitHubReducerAction {
   type: ValueOf<typeof GithubReducerActionTypes>;
-  payload: GitHubReducerState;
+  payload?: GitHubReducerState;
 }
 
 const githubReducer = (
@@ -27,14 +28,14 @@ const githubReducer = (
     case GithubReducerActionTypes.getUsers:
       return {
         ...state,
-        users: action.payload.users,
+        users: action.payload!.users,
         loading: false,
       };
     case GithubReducerActionTypes.getUserAndRepos:
       return {
         ...state,
-        user: action.payload.user,
-        repos: action.payload.repos,
+        user: action.payload!.user,
+        repos: action.payload!.repos,
         loading: false,
       };
     case GithubReducerActionTypes.setLoad:

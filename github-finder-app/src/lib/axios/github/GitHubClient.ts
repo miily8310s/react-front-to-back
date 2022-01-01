@@ -1,8 +1,10 @@
 import IClient from "@/lib/axios/IClient";
 import axios, { AxiosRequestConfig } from "axios";
 
-const GITHUB_URL = process.env.GITHUB_URL;
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+// MEMO: create-react-appで使う環境変数はREACT_APP_から始める必要がある
+// @see https://create-react-app.dev/docs/adding-custom-environment-variables/
+const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
+const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
 
 const githubBase = axios.create({
   baseURL: GITHUB_URL,
