@@ -14,9 +14,9 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     <GithubProvider>
       {/* <AlertProvider> */}
       <Router>
-        <div>
+        <div className="flex flex-col justify-between h-screen">
           <Navbar />
-          <main>
+          <main className="container mx-auto px-3 pb-12">
             {/* <Alert /> */}
             {children}
           </main>
