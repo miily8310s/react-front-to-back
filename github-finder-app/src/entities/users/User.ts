@@ -8,6 +8,14 @@ export interface User {
   html_url: string;
   id: number;
   login: string;
+  name: string;
+  bio: string;
+  location: string;
+  twitter_username: string;
+  followers: number;
+  following: number;
+  public_gists: number;
+  public_repos: number;
   node_id: string;
   organizations_url: string;
   received_events_url: string;

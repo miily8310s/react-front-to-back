@@ -3,7 +3,7 @@ import { User } from "@/entities/users";
 
 export const GithubReducerActionTypes = {
   getUsers: "GET_USERS",
-  getUserAndRepos: "GET_USER_AND_REPOS",
+  getUser: "GET_USER_AND_REPOS",
   setLoad: "SET_LOADING",
   clearUsers: "CLEAR_USERS",
 } as const;
@@ -31,7 +31,7 @@ const githubReducer = (
         users: action.payload!.users,
         loading: false,
       };
-    case GithubReducerActionTypes.getUserAndRepos:
+    case GithubReducerActionTypes.getUser:
       return {
         ...state,
         user: action.payload!.user,
