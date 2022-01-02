@@ -1,5 +1,6 @@
 import { ValueOf } from "@/utils/typesUtils";
 import { User } from "@/entities/users";
+import { RepoType } from "@/entities/user";
 
 export const GithubReducerActionTypes = {
   getUsers: "GET_USERS",
@@ -8,11 +9,10 @@ export const GithubReducerActionTypes = {
   clearUsers: "CLEAR_USERS",
 } as const;
 
-// FIXME: 型定義
 export interface GitHubReducerState {
   users?: User[];
   user?: User;
-  repos?: object[];
+  repos?: RepoType[];
   loading?: boolean;
 }
 export interface GitHubReducerAction {

@@ -1,9 +1,12 @@
+import { Link } from "react-router-dom";
+import { Repo } from "@/components/functional/Repo";
 import { Stat } from "@/components/functional/Stat";
 import { User } from "@/entities/users";
-import { Link } from "react-router-dom";
+import { RepoType } from "@/entities/user";
+
 interface UserLayoutProps {
   user: User;
-  repos: Array<any>;
+  repos: RepoType[];
 }
 
 export const UserLayout = ({ user, repos }: UserLayoutProps) => {
@@ -69,7 +72,7 @@ export const UserLayout = ({ user, repos }: UserLayoutProps) => {
         <div className="card-body">
           <h2 className="text-3xl font-bold card-title">最新のレポジトリ</h2>
           {repos.map((repo) => (
-            <div>{repo.id}</div>
+            <Repo key={repo.id} repo={repo} />
           ))}
         </div>
       </div>
