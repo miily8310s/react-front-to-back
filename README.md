@@ -14,6 +14,14 @@ $ yarn server
 $ yarn start
 ```
 
+## Github Finder App
+
+TODO: Cypress テストコード追加
+
+```bash
+$ yarn start
+```
+
 ## 元ネタ URL
 
 ```md
