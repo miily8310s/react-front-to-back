@@ -18,7 +18,11 @@ export const UserItem = ({ user }: UserItemProps) => {
         </div>
         <div>
           <h2 className="card-title">{user.login}</h2>
-          <Link to={`/user/${user.login}`} className=" text-base-content">
+          <Link
+            to={`/user/${user.login}`}
+            className="text-base-content"
+            data-cy="user-detail-button"
+          >
             ユーザーの詳細を見る
           </Link>
         </div>
