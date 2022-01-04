@@ -1,4 +1,4 @@
-import { CyElement } from "../CyElemant";
+import { CyElement } from "../CyElement";
 
 describe("ホームページのテスト", () => {
   const handleSearchUser = () => {
@@ -9,12 +9,11 @@ describe("ホームページのテスト", () => {
     cy.visit(Cypress.config().baseUrl);
   });
   it("レイアウトの確認", () => {
-    const headerTitleElement = new CyElement("header-title").get();
-    const headerAboutButtonElement = new CyElement("header-about-button").get();
-    headerTitleElement.isContains("Github Finder");
-    headerAboutButtonElement.shouldTargetBlank("/about");
+    cy.get('[data-cy="header-title"]').contains(`Github Finder`);
     cy.get('[data-cy="header-home-button"]').contains(`Home`);
-    cy.get('[data-cy="header-about-button"]').contains(`About`);
+    const headerAboutButtonElement = new CyElement("header-about-button").get();
+    headerAboutButtonElement.isContains(`About`);
+    headerAboutButtonElement.shouldHaveUrl("/about");
     cy.get('[data-cy="user-search-input"]').should(
       "have.attr",
       "placeholder",
@@ -30,9 +29,16 @@ describe("ホームページのテスト", () => {
     cy.get('[data-cy="header-home-button"]').click();
     cy.url().should("eq", Cypress.config().baseUrl);
   });
-  it("検索ボタンに名前を入力するとユーザー一覧が表示される", () => {
-    handleSearchUser();
-    cy.get('[data-cy="user-detail-button"]').contains(`ユーザーの詳細を見る`);
-    cy.get('[data-cy="user-search-clear"]').contains(`Clear`);
+  describe("検索ボタンの動作確認", () => {
+    it("入力欄が空のまま、検索ボタンを押下するとユーザー一覧が表示されない", () => {
+      cy.get('[data-cy="user-search-button"]').click();
+      cy.get('[data-cy="user-detail-button"]').should(`not.exist`);
+      cy.get('[data-cy="user-search-clear"]').should(`not.exist`);
+    });
+    it("入力欄を入力し、検索ボタンを押下するとユーザー一覧が表示される", () => {
+      handleSearchUser();
+      cy.get('[data-cy="user-detail-button"]').contains(`ユーザーの詳細を見る`);
+      cy.get('[data-cy="user-search-clear"]').contains(`Clear`);
+    });
   });
 });

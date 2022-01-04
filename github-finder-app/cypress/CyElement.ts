@@ -14,6 +14,9 @@ export class CyElement {
     return this._element.contains(containText);
   }
 
+  shouldHaveUrl(url: string): void {
+    this._element.should("have.attr", "href", url);
+  }
   shouldTargetBlank(url: string): void {
     this._element
       .should("have.attr", "href", url)
