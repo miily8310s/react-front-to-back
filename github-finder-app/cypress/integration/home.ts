@@ -1,3 +1,5 @@
+import { CyElement } from "../CyElemant";
+
 describe("ホームページのテスト", () => {
   const handleSearchUser = () => {
     cy.get('[data-cy="user-search-input"]').type("miruoo");
@@ -7,7 +9,10 @@ describe("ホームページのテスト", () => {
     cy.visit(Cypress.config().baseUrl);
   });
   it("レイアウトの確認", () => {
-    cy.get('[data-cy="header-title"]').contains(`Github Finder`);
+    const headerTitleElement = new CyElement("header-title").get();
+    const headerAboutButtonElement = new CyElement("header-about-button").get();
+    headerTitleElement.isContains("Github Finder");
+    headerAboutButtonElement.shouldTargetBlank("/about");
     cy.get('[data-cy="header-home-button"]').contains(`Home`);
     cy.get('[data-cy="header-about-button"]').contains(`About`);
     cy.get('[data-cy="user-search-input"]').should(
