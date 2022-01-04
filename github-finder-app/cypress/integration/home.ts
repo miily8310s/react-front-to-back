@@ -1,10 +1,6 @@
 import { CyElement } from "../CyElement";
 
 describe("ホームページのテスト", () => {
-  const handleSearchUser = () => {
-    cy.get('[data-cy="user-search-input"]').type("miruoo");
-    cy.get('[data-cy="user-search-button"]').click();
-  };
   beforeEach(() => {
     cy.visit(Cypress.config().baseUrl);
   });
@@ -36,7 +32,7 @@ describe("ホームページのテスト", () => {
       cy.get('[data-cy="user-search-clear"]').should(`not.exist`);
     });
     it("入力欄を入力し、検索ボタンを押下するとユーザー一覧が表示される", () => {
-      handleSearchUser();
+      cy.handleSearchUser();
       cy.get('[data-cy="user-detail-button"]').contains(`ユーザーの詳細を見る`);
       cy.get('[data-cy="user-search-clear"]').contains(`Clear`);
     });
