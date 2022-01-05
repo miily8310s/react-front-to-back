@@ -23,7 +23,7 @@ describe("ホームページのテスト", () => {
   });
   it("ホームボタンを押下してもURL遷移しない", () => {
     cy.get('[data-cy="header-home-button"]').click();
-    cy.url().should("eq", Cypress.config().baseUrl);
+    cy.isEqualURL();
   });
   describe("検索ボタンの動作確認", () => {
     it("入力欄が空のまま、検索ボタンを押下するとユーザー一覧が表示されない", () => {
