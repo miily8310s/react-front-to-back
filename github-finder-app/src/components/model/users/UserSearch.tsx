@@ -39,10 +39,12 @@ export const UserSearch = () => {
                 placeholder="ユーザー名を入力"
                 value={userSearchText}
                 onChange={handleSearch}
+                data-cy="user-search-input"
               />
               <button
                 type="submit"
                 className="absolute top-0 right-0 w-36 rounded-l-none btn btn-lg"
+                data-cy="user-search-button"
               >
                 検索
               </button>
@@ -54,6 +56,7 @@ export const UserSearch = () => {
         <div>
           <button
             className="btn btn-ghost btn-lg"
+            data-cy="user-search-clear"
             onClick={() => dispatch({ type: clearUsers })}
           >
             Clear
